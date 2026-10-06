@@ -13,7 +13,7 @@ export default function StudentHome() {
 
     return (
         <div className="space-y-9 pb-8">
-            <section className="relative isolate overflow-hidden rounded-lg bg-blue-600 px-6 py-9 text-white sm:px-10 sm:py-12 lg:px-14">
+            <section className="relative isolate overflow-hidden rounded-lg bg-[#4d7094] px-6 py-9 text-white sm:px-10 sm:py-12 lg:px-14">
                 <div className="pointer-events-none absolute -right-16 -top-24 -z-10 h-72 w-72 rounded-full border border-white/10 sm:right-10 sm:top-1/2 sm:-translate-y-1/2">
                     <div className="absolute inset-8 rounded-full border border-white/10" />
                     <div className="absolute inset-16 rounded-full border border-white/10" />

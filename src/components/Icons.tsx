@@ -81,3 +81,25 @@ export function ArrowRightIcon({ className = 'w-4 h-4' }: IconProps) {
         </svg>
     );
 }
+
+export function EyeIcon({ className = 'w-5 h-5' }: IconProps) {
+    return (
+        <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.8}
+             viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+            <circle cx="12" cy="12" r="3" />
+        </svg>
+    );
+}
+
+export function EyeOffIcon({ className = 'w-5 h-5' }: IconProps) {
+    return (
+        <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.8}
+             viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-6.5 0-10-7-10-7a17.4 17.4 0 0 1 4.22-5.19" />
+            <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c6.5 0 10 7 10 7a17.5 17.5 0 0 1-3.4 4.39" />
+            <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+            <path d="M1 1l22 22" />
+        </svg>
+    );
+}

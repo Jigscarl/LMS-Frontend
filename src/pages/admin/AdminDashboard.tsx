@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useBooks } from '../hooks/useBooks';
-import { useMembers } from '../hooks/useMembers';
-import { useLoans } from '../hooks/useLoans';
-import { useFines } from '../hooks/useFines';
+import { useBooks } from '../../hooks/useBooks';
+import { useMembers } from '../../hooks/useMembers';
+import { useLoans } from '../../hooks/useLoans';
+import { useFines } from '../../hooks/useFines';
 import {
     BookIcon,
     UsersIcon,
@@ -12,9 +12,9 @@ import {
     AlertIcon,
     PlusIcon,
     ArrowRightIcon,
-} from '../components/Icons';
+} from '../../components/Icons';
 
-export default function Dashboard() {
+export default function AdminDashboard() {
     const booksQuery = useBooks();
     const membersQuery = useMembers();
     const loansQuery = useLoans();
@@ -48,10 +48,10 @@ export default function Dashboard() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900">
-                        Welcome to KhanTon LMS
+                        Admin Dashboard
                     </h1>
                     <p className="text-gray-600 mt-1">
-                        Your library at a glance
+                        Full overview of KhanTon Library
                     </p>
                 </div>
                 {isLoading && (
@@ -65,25 +65,25 @@ export default function Dashboard() {
             {/* Quick actions */}
             <div className="flex flex-wrap gap-2">
                 <Link
-                    to="/books/new"
+                    to="/admin/books/new"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition"
                 >
                     <PlusIcon className="w-4 h-4" />
                     Add Book
                 </Link>
                 <Link
-                    to="/members"
+                    to="/admin/members"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition"
                 >
                     <PlusIcon className="w-4 h-4" />
                     Add Member
                 </Link>
                 <Link
-                    to="/loans"
+                    to="/admin/loans"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition"
                 >
                     <LoanIcon className="w-4 h-4" />
-                    Borrow a Book
+                    Manage Loans
                 </Link>
             </div>
 
@@ -95,7 +95,7 @@ export default function Dashboard() {
                     detail={`${availableCopies} of ${totalCopies} available`}
                     accent="blue"
                     icon={<BookIcon className="w-5 h-5" />}
-                    link="/books"
+                    link="/admin/books"
                 />
                 <StatCard
                     label="Members"
@@ -103,7 +103,7 @@ export default function Dashboard() {
                     detail={`${activeMembers} active`}
                     accent="green"
                     icon={<UsersIcon className="w-5 h-5" />}
-                    link="/members"
+                    link="/admin/members"
                 />
                 <StatCard
                     label="Active Loans"
@@ -111,7 +111,7 @@ export default function Dashboard() {
                     detail={overdueLoans.length > 0 ? `${overdueLoans.length} overdue` : 'All on time'}
                     accent={overdueLoans.length > 0 ? 'red' : 'purple'}
                     icon={<LoanIcon className="w-5 h-5" />}
-                    link="/loans"
+                    link="/admin/loans"
                 />
                 <StatCard
                     label="Unpaid Fines"
@@ -119,7 +119,7 @@ export default function Dashboard() {
                     detail={`KSh ${unpaidTotal.toLocaleString()}`}
                     accent="orange"
                     icon={<MoneyIcon className="w-5 h-5" />}
-                    link="/fines"
+                    link="/admin/fines"
                 />
             </div>
 
@@ -129,7 +129,7 @@ export default function Dashboard() {
                     title="Overdue Loans"
                     subtitle={overdueLoans.length > 0 ? 'Needs attention' : 'Nothing overdue'}
                     actionLabel="View all"
-                    actionTo="/loans"
+                    actionTo="/admin/loans"
                 >
                     {overdueLoans.length === 0 ? (
                         <EmptyState
@@ -163,7 +163,7 @@ export default function Dashboard() {
                     title="Recent Unpaid Fines"
                     subtitle={fines.length > 0 ? `Total: KSh ${unpaidTotal.toLocaleString()}` : 'No outstanding balance'}
                     actionLabel="View all"
-                    actionTo="/fines"
+                    actionTo="/admin/fines"
                 >
                     {fines.length === 0 ? (
                         <EmptyState
@@ -198,7 +198,7 @@ export default function Dashboard() {
                 title="Recent Activity"
                 subtitle="Last 10 loans across all members"
                 actionLabel="View all"
-                actionTo="/loans"
+                actionTo="/admin/loans"
             >
                 {loans.length === 0 ? (
                     <EmptyState
@@ -239,7 +239,10 @@ export default function Dashboard() {
             </Panel>
 
             {/* Utilisation bar */}
-            <Panel title="Collection Utilisation" subtitle={`${utilisation}% of copies currently on loan`}>
+            <Panel
+                title="Collection Utilisation"
+                subtitle={`${utilisation}% of copies currently on loan`}
+            >
                 <div className="mt-2">
                     <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
                         <div

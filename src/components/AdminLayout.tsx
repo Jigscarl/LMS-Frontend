@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function Layout() {
+export default function AdminLayout() {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -17,19 +17,19 @@ export default function Layout() {
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-14 items-center">
                         <NavLink
-                            to="/"
+                            to="/admin"
                             className="text-xl font-bold text-blue-700"
                             onClick={closeMobile}
                         >
-                            KhanTon LMS
+                            KhanTon <span className="text-gray-400 font-normal">Admin</span>
                         </NavLink>
 
                         <div className="hidden md:flex gap-1">
-                            <NavLink to="/" end className={linkClass}>Dashboard</NavLink>
-                            <NavLink to="/books" className={linkClass}>Books</NavLink>
-                            <NavLink to="/members" className={linkClass}>Members</NavLink>
-                            <NavLink to="/loans" className={linkClass}>Loans</NavLink>
-                            <NavLink to="/fines" className={linkClass}>Fines</NavLink>
+                            <NavLink to="/admin" end className={linkClass}>Dashboard</NavLink>
+                            <NavLink to="/admin/books" className={linkClass}>Books</NavLink>
+                            <NavLink to="/admin/members" className={linkClass}>Members</NavLink>
+                            <NavLink to="/admin/loans" className={linkClass}>Loans</NavLink>
+                            <NavLink to="/admin/fines" className={linkClass}>Fines</NavLink>
                         </div>
 
                         <button
@@ -49,11 +49,11 @@ export default function Layout() {
 
                     {mobileOpen && (
                         <div className="md:hidden py-2 space-y-1">
-                            <NavLink to="/" end className={linkClass} onClick={closeMobile}>Dashboard</NavLink>
-                            <NavLink to="/books" className={linkClass} onClick={closeMobile}>Books</NavLink>
-                            <NavLink to="/members" className={linkClass} onClick={closeMobile}>Members</NavLink>
-                            <NavLink to="/loans" className={linkClass} onClick={closeMobile}>Loans</NavLink>
-                            <NavLink to="/fines" className={linkClass} onClick={closeMobile}>Fines</NavLink>
+                            <NavLink to="/admin" end className={linkClass} onClick={closeMobile}>Dashboard</NavLink>
+                            <NavLink to="/admin/books" className={linkClass} onClick={closeMobile}>Books</NavLink>
+                            <NavLink to="/admin/members" className={linkClass} onClick={closeMobile}>Members</NavLink>
+                            <NavLink to="/admin/loans" className={linkClass} onClick={closeMobile}>Loans</NavLink>
+                            <NavLink to="/admin/fines" className={linkClass} onClick={closeMobile}>Fines</NavLink>
                         </div>
                     )}
                 </div>

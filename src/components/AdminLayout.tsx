@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import logo from '../assets/logo.jpeg';
 
 export default function AdminLayout() {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -18,10 +19,14 @@ export default function AdminLayout() {
                     <div className="flex justify-between h-14 items-center">
                         <NavLink
                             to="/admin"
-                            className="text-xl font-bold text-blue-700"
+                            className="flex items-center gap-2.5 text-blue-700"
                             onClick={closeMobile}
                         >
-                            KhanTon <span className="text-gray-400 font-normal">Admin</span>
+                            <div className="h-9 w-9 rounded-full overflow-hidden border border-blue-100 bg-white p-0.5 shrink-0">
+                                <img src={logo} alt="KhanTon Library logo" className="h-full w-full object-cover rounded-full" />
+                            </div>
+                            <span className="text-lg sm:text-xl font-bold leading-none">KhanTon</span>
+                            <span className="text-gray-400 font-normal leading-none hidden sm:inline">Admin</span>
                         </NavLink>
 
                         <div className="hidden md:flex gap-1">

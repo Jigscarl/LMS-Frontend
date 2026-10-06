@@ -2,15 +2,19 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { authApi } from '../api/auth';
 import { TOKEN_KEY, USER_KEY } from '../api/client';
-import type { AuthUser, RegisterDto } from '../types/auth';
+import type { AuthUser, RegisterDto, Role } from '../types/auth';
+
+export type { Role } from '../types/auth';
 
 interface AuthState {
     user: AuthUser | null;
+    role: Role | null;
     isAuthenticated: boolean;
     isAdmin: boolean;
     isStudent: boolean;
     login: (email: string, password: string) => Promise<AuthUser>;
     register: (dto: RegisterDto) => Promise<AuthUser>;
+    setRole: (role: Role) => void;
     logout: () => void;
 }
 
@@ -45,6 +49,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return response.user;
     };
 
+    const setRole = (nextRole: Role) => {
+        setUser((current) => {
+            if (!current) return current;
+            return { ...current, role: nextRole };
+        });
+    };
+
     const logout = () => {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USER_KEY);
@@ -55,11 +66,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         <AuthContext.Provider
             value={{
                 user,
+                role: user?.role ?? null,
                 isAuthenticated: user !== null,
                 isAdmin: user?.role === 'admin',
                 isStudent: user?.role === 'student',
                 login,
                 register,
+                setRole,
                 logout,
             }}
         >

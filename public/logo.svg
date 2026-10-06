@@ -1,0 +1,20 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="16" y1="16" x2="144" y2="144" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="book" x1="46" y1="30" x2="114" y2="125" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EFF6FF"/>
+      <stop offset="1" stop-color="#DBEAFE"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="140" height="140" rx="36" fill="url(#bg)"/>
+  <path d="M42 45C42 38.3726 47.3726 33 54 33H93C100.732 33 107 39.268 107 47V105.5C107 104.672 106.328 104 105.5 104H54C47.3726 104 42 98.6274 42 92V45Z" fill="url(#book)"/>
+  <path d="M50 42V110H55.5C65.5 110 74 101.5 74 91.5V60.5C74 50.5 65.5 42 55.5 42H50Z" fill="#BFDBFE"/>
+  <path d="M84 42H96.5C104.784 42 111.5 48.7157 111.5 57V103C111.5 111.284 104.784 118 96.5 118H84V42Z" fill="#BFDBFE"/>
+  <path d="M56 56H76.5L96 82.5L76.5 108H56L76.5 81.5L56 56Z" fill="#2563EB"/>
+  <path d="M77.5 56H83.5L101 80.5L83.5 108H77.5L93.5 80.5L77.5 56Z" fill="#1D4ED8"/>
+  <path d="M70 56H54C47.3726 56 42 61.3726 42 68V106C42 112.627 47.3726 118 54 118H70V56Z" fill="#93C5FD" fill-opacity="0.5"/>
+  <path d="M54 33H93C100.732 33 107 39.268 107 47V52H54C47.3726 52 42 46.6274 42 40V38C42 35.2386 44.2386 33 47 33H54Z" fill="#E0F2FE"/>
+</svg>

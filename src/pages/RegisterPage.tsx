@@ -2,7 +2,8 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { BookIcon, EyeIcon, EyeOffIcon } from '../components/Icons';
+import { EyeIcon, EyeOffIcon } from '../components/Icons';
+import logo from '../assets/logo.jpeg';
 
 export default function RegisterPage() {
     const { register } = useAuth();
@@ -26,7 +27,7 @@ export default function RegisterPage() {
                 email: email.trim(),
                 fullName: fullName.trim(),
                 password,
-                role: 'Student',
+                role: 'student',
                 membershipNumber: membershipNumber.trim(),
             });
             navigate(user.role === 'admin' ? '/admin' : '/home', { replace: true });
@@ -39,10 +40,13 @@ export default function RegisterPage() {
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center px-4 py-12">
             <div className="w-full max-w-md">
-                {/* Logo */}
                 <div className="flex justify-center mb-6">
-                    <div className="w-16 h-16 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center">
-                        <BookIcon className="w-8 h-8 text-blue-600" />
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-blue-100 bg-white shadow-md overflow-hidden p-1.5 flex items-center justify-center">
+                        <img
+                            src={logo}
+                            alt="KhanTon Library logo"
+                            className="w-full h-full object-cover rounded-full"
+                        />
                     </div>
                 </div>
 

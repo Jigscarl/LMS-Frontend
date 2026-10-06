@@ -26,7 +26,7 @@ export default function RegisterPage() {
                 email: email.trim(),
                 fullName: fullName.trim(),
                 password,
-                role: 'student',
+                role: 'Student',
                 membershipNumber: membershipNumber.trim(),
             });
             navigate(user.role === 'admin' ? '/admin' : '/home', { replace: true });

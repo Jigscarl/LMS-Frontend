@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import { useMembers } from '../../hooks/useMembers';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage';
+import { PlusIcon } from '../../components/Icons';
 
 export default function AdminMembers() {
     const { data: members, isLoading, error } = useMembers();
@@ -12,8 +14,19 @@ export default function AdminMembers() {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">Manage Members</h1>
-            <p className="text-sm text-gray-500 mb-6">{list.length} registered members</p>
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900 mb-1">Manage Members</h1>
+                    <p className="text-sm text-gray-500">{list.length} registered members</p>
+                </div>
+                <Link
+                    to="/admin/members/new"
+                    className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+                >
+                    <PlusIcon className="h-4 w-4" />
+                    Add Member
+                </Link>
+            </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 <table className="w-full text-sm">

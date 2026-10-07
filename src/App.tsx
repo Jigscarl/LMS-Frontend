@@ -16,6 +16,7 @@ import StudentLoans from './pages/student/StudentLoans';
 // Admin pages
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminBooks from './pages/admin/AdminBooks';
+import CreateMemberPage from './pages/admin/CreateMemberPage';
 import AdminMembers from './pages/admin/AdminMembers';
 import AdminLoans from './pages/admin/AdminLoans';
 import AdminFines from './pages/admin/AdminFines';
@@ -51,6 +52,7 @@ export default function App() {
                     <Route path="/admin/books" element={<AdminBooks />} />
                     <Route path="/admin/books/new" element={<CreateBookPage />} />
                     <Route path="/admin/members" element={<AdminMembers />} />
+                    <Route path="/admin/members/new" element={<CreateMemberPage />} />
                     <Route path="/admin/loans" element={<AdminLoans />} />
                     <Route path="/admin/fines" element={<AdminFines />} />
                 </Route>

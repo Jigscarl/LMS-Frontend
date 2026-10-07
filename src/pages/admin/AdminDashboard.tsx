@@ -72,7 +72,7 @@ export default function AdminDashboard() {
                     Add Book
                 </Link>
                 <Link
-                    to="/admin/members"
+                    to="/admin/members/new"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition"
                 >
                     <PlusIcon className="w-4 h-4" />

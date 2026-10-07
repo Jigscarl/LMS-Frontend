@@ -82,6 +82,16 @@ export function ArrowRightIcon({ className = 'w-4 h-4' }: IconProps) {
     );
 }
 
+export function LogoutIcon({ className = 'w-5 h-5' }: IconProps) {
+    return (
+        <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.8}
+             viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 17l5-5-5-5M15 12H3" />
+            <path d="M12 3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6" />
+        </svg>
+    );
+}
+
 export function EyeIcon({ className = 'w-5 h-5' }: IconProps) {
     return (
         <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.8}

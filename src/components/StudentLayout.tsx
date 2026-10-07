@@ -1,9 +1,11 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { LogoutIcon } from './Icons';
 import logo from '../assets/logo.jpeg';
 
 export default function StudentLayout() {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
     const initials = user?.fullName
         .trim()
         .split(/\s+/)
@@ -15,6 +17,11 @@ export default function StudentLayout() {
         `whitespace-nowrap px-3 py-2 text-sm font-medium transition ${
             isActive ? 'border-b-2 border-[#315d45] text-[#244b37]' : 'border-b-2 border-transparent text-gray-600 hover:border-[#b7c9b6] hover:text-[#244b37]'
         }`;
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login', { replace: true });
+    };
 
     return (
         <div className="min-h-screen bg-[#f7f8f4]">
@@ -37,10 +44,20 @@ export default function StudentLayout() {
                             </div>
                         </div>
 
-                        <div className="col-start-2 row-start-1 flex shrink-0 items-center justify-self-end sm:col-start-3">
+                        <div className="col-start-2 row-start-1 flex shrink-0 items-center justify-self-end gap-2 sm:col-start-3">
                             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e4ecdf] text-sm font-semibold text-[#315d45]" aria-label={user?.fullName ?? 'Student'} title={user?.fullName ?? 'Student'}>
                                 {initials.toUpperCase()}
                             </div>
+                            <button
+                                type="button"
+                                onClick={handleLogout}
+                                aria-label="Log out"
+                                title="Log out"
+                                className="inline-flex h-9 items-center gap-2 rounded-md px-2 text-sm font-medium text-gray-600 transition hover:bg-[#eef2eb] hover:text-[#244b37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#52745d]"
+                            >
+                                <LogoutIcon className="h-5 w-5" />
+                                <span className="hidden md:inline">Log out</span>
+                            </button>
                         </div>
                     </div>
                 </div>

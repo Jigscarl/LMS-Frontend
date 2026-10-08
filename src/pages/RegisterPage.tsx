@@ -28,7 +28,7 @@ export default function RegisterPage() {
                 fullName: fullName.trim(),
                 password,
                 role: 'student',
-                membershipNumber: membershipNumber.trim(),
+                membershipNumber: membershipNumber.trim().toUpperCase(),
             });
             navigate(user.role === 'admin' ? '/admin' : '/home', { replace: true });
         } catch (err) {
@@ -94,24 +94,6 @@ export default function RegisterPage() {
                         </div>
 
                         <div>
-                            <label htmlFor="membershipNumber" className="block text-sm font-semibold text-gray-800 mb-2">
-                                Membership Number
-                            </label>
-                            <input
-                                id="membershipNumber"
-                                type="text"
-                                required
-                                value={membershipNumber}
-                                onChange={(e) => setMembershipNumber(e.target.value)}
-                                placeholder="e.g. S001"
-                                className="w-full px-4 py-3 bg-slate-100 border border-transparent rounded-md text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
-                            />
-                            <p className="text-xs text-gray-500 mt-1">
-                                Provided by the library. Contact the administrator if you don't have one.
-                            </p>
-                        </div>
-
-                        <div>
                             <label htmlFor="password" className="block text-sm font-semibold text-gray-800 mb-2">
                                 Password
                             </label>
@@ -136,6 +118,28 @@ export default function RegisterPage() {
                                     {showPassword ? <EyeOffIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
                                 </button>
                             </div>
+                        </div>
+
+                        <div>
+                            <label htmlFor="membershipNumber" className="block text-sm font-semibold text-gray-800 mb-2">
+                                Membership Number
+                            </label>
+                            <input
+                                id="membershipNumber"
+                                type="text"
+                                autoCapitalize="characters"
+                                autoComplete="off"
+                                required
+                                pattern="[A-Z]{3}/B/[0-9]{2}-[0-9]{5}/[0-9]{4}"
+                                title="Use XXX/B/NN-NNNNN/YYYY (for example, COM/B/01-00132/2023)."
+                                value={membershipNumber}
+                                onChange={(e) => setMembershipNumber(e.target.value.toUpperCase())}
+                                placeholder="COM/B/01-00132/2023"
+                                className="w-full px-4 py-3 bg-slate-100 border border-transparent rounded-md text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">
+                                Format: XXX/B/NN-NNNNN/YYYY, for example COM/B/01-00132/2023.
+                            </p>
                         </div>
 
                         {error && (

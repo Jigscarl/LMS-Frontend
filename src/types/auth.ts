@@ -17,6 +17,7 @@ export interface AuthResponse {
 export interface LoginDto {
     email: string;
     password: string;
+    membershipNumber?: string;
 }
 
 export interface RegisterDto {

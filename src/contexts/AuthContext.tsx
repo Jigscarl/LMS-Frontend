@@ -12,7 +12,7 @@ interface AuthState {
     isAuthenticated: boolean;
     isAdmin: boolean;
     isStudent: boolean;
-    login: (email: string, password: string) => Promise<AuthUser>;
+    login: (email: string, password: string, membershipNumber?: string) => Promise<AuthUser>;
     register: (dto: RegisterDto) => Promise<AuthUser>;
     setRole: (role: Role) => void;
     logout: () => void;
@@ -35,8 +35,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         else localStorage.removeItem(USER_KEY);
     }, [user]);
 
-    const login = async (email: string, password: string): Promise<AuthUser> => {
-        const response = await authApi.login({ email, password });
+    const login = async (email: string, password: string, membershipNumber?: string): Promise<AuthUser> => {
+        const response = await authApi.login({ email, password, membershipNumber });
         localStorage.setItem(TOKEN_KEY, response.token);
         setUser(response.user);
         return response.user;

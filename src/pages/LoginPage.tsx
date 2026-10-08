@@ -13,6 +13,7 @@ export default function LoginPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [membershipNumber, setMembershipNumber] = useState('');
     const [remember, setRemember] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -26,7 +27,7 @@ export default function LoginPage() {
         setIsSubmitting(true);
 
         try {
-            const user: AuthUser = await login(email, password);
+            const user: AuthUser = await login(email, password, membershipNumber.trim());
             const defaultHome = user.role === 'admin' ? '/admin' : '/home';
             navigate(from ?? defaultHome, { replace: true });
         } catch (err) {
@@ -77,6 +78,28 @@ export default function LoginPage() {
                                 placeholder="you@example.com"
                                 className="w-full px-4 py-3 bg-slate-100 border border-transparent rounded-md text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
                             />
+                        </div>
+
+                        <div>
+                            <label
+                                htmlFor="membershipNumber"
+                                className="block text-sm font-semibold text-gray-800 mb-2"
+                            >
+                                Membership Number (students)
+                            </label>
+                            <input
+                                id="membershipNumber"
+                                type="text"
+                                autoCapitalize="characters"
+                                autoComplete="off"
+                                value={membershipNumber}
+                                onChange={(e) => setMembershipNumber(e.target.value.toUpperCase())}
+                                placeholder="COM/B/01-00132/2023"
+                                className="w-full px-4 py-3 bg-slate-100 border border-transparent rounded-md text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">
+                                Required for student accounts; staff can leave this blank.
+                            </p>
                         </div>
 
                         {/* Password */}

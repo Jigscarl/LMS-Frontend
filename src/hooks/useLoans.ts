@@ -6,6 +6,10 @@ export function useLoans() {
     return useQuery({ queryKey: ['loans'], queryFn: loansApi.list });
 }
 
+export function useMyLoans() {
+    return useQuery({ queryKey: ['loans', 'mine'], queryFn: loansApi.mine });
+}
+
 export function useBorrow() {
     const qc = useQueryClient();
     return useMutation({

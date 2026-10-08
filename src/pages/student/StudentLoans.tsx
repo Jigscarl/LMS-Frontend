@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { useLoans } from '../../hooks/useLoans';
+import { useMyLoans } from '../../hooks/useLoans';
 import type { Loan } from '../../types/loan';
 import ErrorMessage from '../../components/ErrorMessage';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -21,7 +21,7 @@ function loanStatus(loan: Loan) {
 
 export default function StudentLoans() {
     const { user } = useAuth();
-    const { data: loans, isLoading, error } = useLoans();
+    const { data: loans, isLoading, error } = useMyLoans();
     const [filter, setFilter] = useState<LoanFilter>('current');
     const memberId = user?.memberId;
     const memberLoans = Array.isArray(loans) && memberId != null

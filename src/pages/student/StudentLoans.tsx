@@ -54,6 +54,10 @@ export default function StudentLoans() {
                 </div>
             </header>
 
+            <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                Overdue books incur a fine of <strong>KSh 80 per day</strong>. The fine is recorded when the book is returned.
+            </p>
+
             {memberId == null ? (
                 <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
                     Your account does not have a member profile loaded, so loan history cannot be shown.

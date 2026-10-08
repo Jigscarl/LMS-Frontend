@@ -12,6 +12,7 @@ import StudentHome from './pages/student/StudentHome';
 import StudentBooks from './pages/student/StudentBooks';
 import StudentBookDetail from './pages/student/StudentBookDetail';
 import StudentLoans from './pages/student/StudentLoans';
+import StudentFines from './pages/student/StudentFines';
 
 // Admin pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -42,6 +43,7 @@ export default function App() {
                     <Route path="/books" element={<StudentBooks />} />
                     <Route path="/books/:id" element={<StudentBookDetail />} />
                     <Route path="/my-loans" element={<StudentLoans />} />
+                    <Route path="/my-fines" element={<StudentFines />} />
                 </Route>
             </Route>
 

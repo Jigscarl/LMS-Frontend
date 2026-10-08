@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useBooks } from '../../hooks/useBooks';
+import { useBooks, useDeleteBook } from '../../hooks/useBooks';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage';
 import { PlusIcon } from '../../components/Icons';
 
 export default function AdminBooks() {
     const { data: books, isLoading, error } = useBooks();
+    const deleteBook = useDeleteBook();
 
     if (isLoading) return <LoadingSpinner />;
     if (error) return <ErrorMessage message={(error as Error).message} />;
@@ -37,6 +38,7 @@ export default function AdminBooks() {
                             <th className="text-left px-4 py-3 font-medium">Category</th>
                             <th className="text-left px-4 py-3 font-medium">ISBN</th>
                             <th className="text-left px-4 py-3 font-medium">Available</th>
+                            <th className="text-right px-4 py-3 font-medium">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -51,11 +53,25 @@ export default function AdminBooks() {
                                         {book.availableCopies} / {book.totalCopies}
                                     </span>
                                 </td>
+                                <td className="px-4 py-3 text-right">
+                                    <button
+                                        type="button"
+                                        disabled={deleteBook.isPending}
+                                        onClick={() => {
+                                            if (window.confirm(`Delete "${book.title}"? Books with loan history cannot be deleted.`)) {
+                                                deleteBook.mutate(book.id);
+                                            }
+                                        }}
+                                        className="rounded-md px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                    >
+                                        {deleteBook.isPending && deleteBook.variables === book.id ? 'Deleting…' : 'Delete'}
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                         {list.length === 0 && (
                             <tr>
-                                <td colSpan={5} className="px-4 py-8 text-center text-gray-500">
+                                <td colSpan={6} className="px-4 py-8 text-center text-gray-500">
                                     No books yet. Add the first one.
                                 </td>
                             </tr>
@@ -63,6 +79,11 @@ export default function AdminBooks() {
                     </tbody>
                 </table>
             </div>
+            {deleteBook.error && (
+                <p role="alert" className="mt-4 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                    {(deleteBook.error as Error).message}
+                </p>
+            )}
         </div>
     );
 }

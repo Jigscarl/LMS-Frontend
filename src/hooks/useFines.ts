@@ -8,6 +8,13 @@ export function useFines(unpaidOnly = false) {
     });
 }
 
+export function useMyFines() {
+    return useQuery({
+        queryKey: ['fines', 'mine'],
+        queryFn: finesApi.mine,
+    });
+}
+
 export function useFinesByMember(memberId: number) {
     return useQuery({
         queryKey: ['fines', 'member', memberId],

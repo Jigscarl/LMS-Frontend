@@ -26,3 +26,11 @@ export function useCreateMember() {
         onSuccess: () => qc.invalidateQueries({ queryKey: memberKeys.all }),
     });
 }
+
+export function useDeleteMember() {
+    const qc = useQueryClient();
+    return useMutation({
+        mutationFn: (id: number) => membersApi.remove(id),
+        onSuccess: () => qc.invalidateQueries({ queryKey: memberKeys.all }),
+    });
+}

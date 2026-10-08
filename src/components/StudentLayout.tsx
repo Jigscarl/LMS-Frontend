@@ -41,6 +41,7 @@ export default function StudentLayout() {
                                 <NavLink to="/home" end className={linkClass}>Home</NavLink>
                                 <NavLink to="/books" end className={linkClass}>Browse Books</NavLink>
                                 <NavLink to="/my-loans" className={linkClass}>My Loans</NavLink>
+                                <NavLink to="/my-fines" className={linkClass}>My Fines</NavLink>
                             </div>
                         </div>
 

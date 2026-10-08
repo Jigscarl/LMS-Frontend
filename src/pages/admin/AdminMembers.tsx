@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useMembers } from '../../hooks/useMembers';
+import { useDeleteMember, useMembers } from '../../hooks/useMembers';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage';
 import { PlusIcon } from '../../components/Icons';
 
 export default function AdminMembers() {
     const { data: members, isLoading, error } = useMembers();
+    const deleteMember = useDeleteMember();
 
     if (isLoading) return <LoadingSpinner />;
     if (error) return <ErrorMessage message={(error as Error).message} />;
@@ -37,6 +38,7 @@ export default function AdminMembers() {
                             <th className="text-left px-4 py-3 font-medium">Membership #</th>
                             <th className="text-left px-4 py-3 font-medium">Status</th>
                             <th className="text-left px-4 py-3 font-medium">Active Loans</th>
+                            <th className="text-right px-4 py-3 font-medium">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -57,11 +59,25 @@ export default function AdminMembers() {
                                     </span>
                                 </td>
                                 <td className="px-4 py-3 text-gray-600">{member.activeLoans}</td>
+                                <td className="px-4 py-3 text-right">
+                                    <button
+                                        type="button"
+                                        disabled={deleteMember.isPending}
+                                        onClick={() => {
+                                            if (window.confirm(`Delete ${member.fullName}? Their linked login will also be deleted. Members with loan history cannot be deleted.`)) {
+                                                deleteMember.mutate(member.id);
+                                            }
+                                        }}
+                                        className="rounded-md px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                    >
+                                        {deleteMember.isPending && deleteMember.variables === member.id ? 'Deleting…' : 'Delete'}
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                         {list.length === 0 && (
                             <tr>
-                                <td colSpan={5} className="px-4 py-8 text-center text-gray-500">
+                                <td colSpan={6} className="px-4 py-8 text-center text-gray-500">
                                     No members yet.
                                 </td>
                             </tr>
@@ -69,6 +85,11 @@ export default function AdminMembers() {
                     </tbody>
                 </table>
             </div>
+            {deleteMember.error && (
+                <p role="alert" className="mt-4 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                    {(deleteMember.error as Error).message}
+                </p>
+            )}
         </div>
     );
 }
